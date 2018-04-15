@@ -1,0 +1,42 @@
+program = functiondef | vardef, ";";
+
+vardef = "var", id, ":", type, ["=", expr];
+
+funcdef = "func", id, "(", formal params, ")", [":", type], block;
+formalparams = id, ":", type, [",", formalparams];
+
+block = "{", {stmt}, "}";
+stmt = funccall, ";"
+     | vardef, ";"
+     | assignment, ";"
+     | return, ";"
+     | break, ";"
+     | continue, ";"
+     | if
+     | while
+     | for;
+
+funccall = id, "(", actualparams, ")";
+actualparams = expr, [",", actualparams];
+
+assignment = id, "=", expr | id, "+=", expr | id, "-=", expr
+           | id, "*=", expr | id, "/=", expr | id, "%=", expr;
+
+if = "if", expr, block, {"else", "if", block}, ["else", block];
+while = "while", expr, block;
+for = "for", id, [":", type], "=", expr, ",", expr, [",", expr], block
+    | "for", id, [":", type], "in", expr, block;
+
+return = "return", expr
+       | "return";
+break = "break";
+continue = "continue";
+
+id = letter, {letter | digit | "_"};
+expr = id | expr, binop, expr | unop, expr | number | string
+     | "(", expr, ")";
+type = "integer" | "string";
+number = digitwo0, {digit};
+binop = "==" | "<" | ">" | "<=" | ">=" | "!=" | "and" | "or" | "xor"
+      | "+" | "-" | "*" | "/" | "**" | "%" | "&" | "|" | "^";
+unop = "-" | "not" | "!";

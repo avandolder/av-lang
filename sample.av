@@ -1,0 +1,11 @@
+var hello : integer = 10;
+
+func goodbye() {
+    print("goodbye");
+}
+
+func main() : integer {
+    goodbye();
+
+    return 0;
+}
