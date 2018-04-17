@@ -1,0 +1,2 @@
+OBJFLAGS=-c -Wall
+

@@ -22,7 +22,7 @@ actualparams = expr, [",", actualparams];
 assignment = id, "=", expr | id, "+=", expr | id, "-=", expr
            | id, "*=", expr | id, "/=", expr | id, "%=", expr;
 
-if = "if", expr, block, {"else", "if", block}, ["else", block];
+if = "if", expr, block, {"else if", block}, ["else", block];
 while = "while", expr, block;
 for = "for", id, [":", type], "=", expr, ",", expr, [",", expr], block
     | "for", id, [":", type], "in", expr, block;
@@ -35,8 +35,9 @@ continue = "continue";
 id = letter, {letter | digit | "_"};
 expr = id | expr, binop, expr | unop, expr | number | string
      | "(", expr, ")";
-type = "integer" | "string";
-number = digitwo0, {digit};
+type = "integer" | "string" | id;
+number = digit, {digit};
 binop = "==" | "<" | ">" | "<=" | ">=" | "!=" | "and" | "or" | "xor"
       | "+" | "-" | "*" | "/" | "**" | "%" | "&" | "|" | "^";
 unop = "-" | "not" | "!";
+string = '"', printablechar - '"', '"';
