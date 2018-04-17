@@ -1,6 +1,7 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
+#include <unordered_map>
 #include <string>
 
 class Token
@@ -57,6 +58,8 @@ public:
         BITNOT,
     };
 
+    static std::unordered_map<std::string, Type> keywords;
+
     Token() {}
     Token(Type t) : type(t) {}
     Token(Type t, std::string v) : type(t), value(v) {}
@@ -68,6 +71,23 @@ public:
     {
         return type == t;
     }
+};
+
+std::unordered_map<std::string, Token::Type> Token::keywords = {
+    {"var", Token::VAR},
+    {"func", Token::FUNC},
+    {"return", Token::RETURN},
+    {"break", Token::BREAK},
+    {"continue", Token::CONTINUE},
+    {"if", Token::IF},
+    {"else", Token::ELSE},
+    {"while", Token::WHILE},
+    {"for", Token::FOR},
+    {"in", Token::IN},
+    {"and", Token::AND},
+    {"or", Token::OR},
+    {"xor", Token::XOR},
+    {"not", Token::NOT},
 };
 
 #endif
