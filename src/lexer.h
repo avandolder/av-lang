@@ -14,7 +14,7 @@ private:
     std::list<Token> tokens;
     std::istream& input;
 
-    std::shared_ptr<LexerState> curr_state;
+    std::unique_ptr<LexerState> curr_state;
 
 public:
     Lexer(std::istream& input) : input(input) {}

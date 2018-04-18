@@ -3,6 +3,9 @@
 
 #include <unordered_map>
 #include <string>
+#include <vector>
+
+#include "trie.h"
 
 class Token
 {
@@ -10,8 +13,11 @@ public:
     enum Type
     {
         ERROR,
+        END,
+        COMMENT,
         SEMI,
         COLON,
+        COMMA,
         VAR,
         ID,
         ASSIGN,
@@ -19,9 +25,15 @@ public:
         SUBASSIGN,
         MULASSIGN,
         DIVASSIGN,
+        POWASSIGN,
         MODASSIGN,
+        BITANDASSIGN,
+        BITORASSIGN,
+        BITXORASSIGN,
+        BITNOTASSIGN,
+        BITSHLASSIGN,
+        BITSHRASSIGN,
         FUNC,
-        COMMA,
         LPAR,
         RPAR,
         LBRA,
@@ -56,9 +68,13 @@ public:
         BITOR,
         BITXOR,
         BITNOT,
+        BITSHL,
+        BITSHR,
     };
 
     static std::unordered_map<std::string, Type> keywords;
+    static Trie<Type> symbols;
+    static std::vector<std::string> type_names;
 
     Token() {}
     Token(Type t) : type(t) {}
@@ -67,27 +83,9 @@ public:
     Type type;
     std::string value;
 
-    bool operator==(Type t)
-    {
-        return type == t;
-    }
-};
-
-std::unordered_map<std::string, Token::Type> Token::keywords = {
-    {"var", Token::VAR},
-    {"func", Token::FUNC},
-    {"return", Token::RETURN},
-    {"break", Token::BREAK},
-    {"continue", Token::CONTINUE},
-    {"if", Token::IF},
-    {"else", Token::ELSE},
-    {"while", Token::WHILE},
-    {"for", Token::FOR},
-    {"in", Token::IN},
-    {"and", Token::AND},
-    {"or", Token::OR},
-    {"xor", Token::XOR},
-    {"not", Token::NOT},
+    bool operator==(const Type& t) { return type == t; }
+    bool operator!=(const Type& t) { return type != t; }
+    operator Type() { return type; }
 };
 
 #endif

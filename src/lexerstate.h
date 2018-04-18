@@ -10,9 +10,9 @@ class LexerState
 {
 public:
     LexerState() {}
-    virtual ~LexerState() = 0;
+    virtual ~LexerState() {};
 
-    virtual std::shared_ptr<LexerState> event(std::istream& is) = 0;
+    virtual std::unique_ptr<LexerState> event(std::istream& is) = 0;
     virtual bool accept() = 0;
     virtual Token get_token() = 0;
 };
