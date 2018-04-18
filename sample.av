@@ -1,11 +1,12 @@
 var hello : integer = 10;
 
 func goodbye() {
-    print("goodbye");
+    // Write a message to the console.
+    print("Hello, world!");
+    print("Good{0}", "bye!");
 }
 
-func main() : integer {
+func main() {
+    /* Call a function. */
     goodbye();
-
-    return 0;
 }

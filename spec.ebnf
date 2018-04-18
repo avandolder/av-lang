@@ -32,7 +32,7 @@ return = "return", expr
 break = "break";
 continue = "continue";
 
-id = letter, {letter | digit | "_"};
+id = (letter | "_"), {letter | digit | "_"};
 expr = id | expr, binop, expr | unop, expr | number | string
      | "(", expr, ")";
 type = "integer" | "string" | id;
