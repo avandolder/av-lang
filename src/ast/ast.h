@@ -18,6 +18,7 @@ public:
     class BinaryExpr;
     class UnaryExpr;
     class Term;
+    class FuncTerm;
 
     // Define all statements.
     class Stmt;

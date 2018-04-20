@@ -478,6 +478,9 @@ std::shared_ptr<Ast::Expr> Parser::term()
     switch (peek())
     {
     case Token::ID:
+        if (peek(1) == Token::LPAR)
+            return std::dynamic_pointer_cast<Ast::Expr>(functerm());
+
         return std::dynamic_pointer_cast<Ast::Expr>(
             std::make_shared<Ast::Term>(Ast::Expr::ID,
                                         match(Token::ID).value));
@@ -495,4 +498,26 @@ std::shared_ptr<Ast::Expr> Parser::term()
     default:
         error(Token::ID, peek());
     }
+}
+
+std::shared_ptr<Ast::FuncTerm> Parser::functerm()
+{
+    auto node = std::make_shared<Ast::FuncTerm>();
+
+    node->id = match(Token::ID).value;
+    match(Token::LPAR);
+
+    if (peek() != Token::RPAR)
+    {
+        node->params.push_back(expr());
+
+        while (peek() != Token::RPAR)
+        {
+            match(Token::COMMA);
+            node->params.push_back(expr());
+        }
+    }
+
+    match(Token::RPAR);
+    return node;
 }

@@ -43,6 +43,7 @@ public:
     std::shared_ptr<Ast::Expr> addition_expr();
     std::shared_ptr<Ast::Expr> multiply_expr();
     std::shared_ptr<Ast::Expr> term();
+    std::shared_ptr<Ast::FuncTerm> functerm();
 };
 
 #endif

@@ -1,6 +1,10 @@
 #ifndef AST_EXPR_H
 #define AST_EXPR_H
 
+#include <memory>
+#include <string>
+#include <vector>
+
 #include "ast/ast.h"
 
 class Ast::Expr
@@ -13,6 +17,7 @@ public:
         ID,
         STRING,
         NUMBER,
+        FUNC,
     };
 
     virtual ~Expr() {}
@@ -47,6 +52,15 @@ public:
     Term(Type t, std::string v) : type(t), value(v) {}
 
     Type get_type() { return type; };
+};
+
+class Ast::FuncTerm : public Expr
+{
+public:
+    std::string id;
+    std::vector<std::shared_ptr<Expr>> params;
+
+    Type get_type() { return FUNC; };
 };
 
 #endif
