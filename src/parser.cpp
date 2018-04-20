@@ -70,10 +70,12 @@ Token& Parser::peek(int n)
     auto itrn = itr;
 
     for (int i = 0; i < n; i++)
-        itrn++;
+    {
+    	while (*itrn == Token::COMMENT)
+        	itrn++;
 
-    while (*itrn == Token::COMMENT)
         itrn++;
+    }
 
     return *itrn;
 }
