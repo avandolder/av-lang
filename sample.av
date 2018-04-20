@@ -11,6 +11,13 @@ func main() {
     goodbye("person");
 
     if test == 10 and "haha" < (5) & 2 + 2 {
+
+    } else if 10 == 2 {
+
+    } else if 1 {
+
+    } else {
+
     }
 
     var j : integer = 2;

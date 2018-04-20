@@ -202,8 +202,25 @@ std::shared_ptr<Ast::If> Parser::ifstmt()
     auto node = std::make_shared<Ast::If>();
 
     match(Token::IF);
-    node->expr = expr();
-    node->block = block();
+    node->expr.push_back(expr());
+    node->block.push_back(block());
+
+    while (peek() == Token::ELSE)
+    {
+        match(Token::ELSE);
+
+        if (peek() == Token::IF)
+        {
+            match(Token::IF);
+            node->expr.push_back(expr());
+            node->block.push_back(block());
+        }
+        else
+        {
+            node->block.push_back(block());
+            break; // An else block cannot be followed by another else.
+        }
+    }
 
     return node;
 }

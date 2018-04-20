@@ -49,8 +49,8 @@ public:
 class Ast::If : public Stmt
 {
 public:
-    std::shared_ptr<Expr> expr = nullptr;
-    std::shared_ptr<Block> block = nullptr;
+    std::vector<std::shared_ptr<Expr>> expr;
+    std::vector<std::shared_ptr<Block>> block;
 
     Type get_type() override { return IF; }
 };
