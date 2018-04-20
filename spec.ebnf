@@ -1,9 +1,9 @@
-program = functiondef | vardef, ";";
+program = {functiondef | vardef, ";"};
 
 vardef = "var", id, ":", type, ["=", expr];
 
-funcdef = "func", id, "(", formal params, ")", [":", type], block;
-formalparams = id, ":", type, [",", formalparams];
+funcdef = "func", id, "(", [formal params], ")", [":", type], block;
+formalparams = id, ":", type, {",", id, ":", type};
 
 block = "{", {stmt}, "}";
 stmt = funccall, ";"
@@ -16,8 +16,8 @@ stmt = funccall, ";"
      | while
      | for;
 
-funccall = id, "(", actualparams, ")";
-actualparams = expr, [",", actualparams];
+funccall = id, "(", [actualparams], ")";
+actualparams = expr, {",", expr};
 
 assignment = id, "=", expr | id, "+=", expr | id, "-=", expr
            | id, "*=", expr | id, "/=", expr | id, "%=", expr;
@@ -34,10 +34,10 @@ continue = "continue";
 
 id = (letter | "_"), {letter | digit | "_"};
 expr = id | expr, binop, expr | unop, expr | number | string
-     | "(", expr, ")";
-type = "integer" | "string" | id;
+     | "(", expr, ")" | funccall;
+type = "integer" | "string";
 number = digit, {digit};
 binop = "==" | "<" | ">" | "<=" | ">=" | "!=" | "and" | "or" | "xor"
-      | "+" | "-" | "*" | "/" | "**" | "%" | "&" | "|" | "^";
+      | "+" | "-" | "*" | "/" | "**" | "%" | "&" | "|" | "^" | "~";
 unop = "-" | "not" | "!";
 string = '"', printablechar - '"', '"';

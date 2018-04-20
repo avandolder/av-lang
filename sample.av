@@ -1,12 +1,20 @@
-var hello : integer = 10;
+var test : integer = 10;
 
-func goodbye() {
+func goodbye(name : string) {
     // Write a message to the console.
-    print("Hello, world!");
-    print("Good{0}", "bye!");
+    println("Hello, world!");
+    println("Good bye, ", name);
 }
 
 func main() {
     /* Call a function. */
-    goodbye();
+    goodbye("person");
+
+    if test == 10 and "haha" < (5) & 2 + 2 {
+    }
+
+    var j : integer = 2;
+    for i : integer = 0,10 {
+        j = 2*j;
+    }
 }
