@@ -1,12 +1,12 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include "syntaxtree.h"
+#include "ast/ast.h"
 
 class Interpreter
 {
 public:
-    static void interpret(SyntaxTree st);
+    static void interpret(Ast tree);
 };
 
 #endif
