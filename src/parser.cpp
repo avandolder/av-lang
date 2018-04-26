@@ -323,8 +323,8 @@ std::shared_ptr<Ast::Expr> Parser::comparison_expr() {
   node->lhs = bitwise_expr();
 
   switch (peek()) {
-    case Token::EQUAL: node->op = match(Token::EQUAL).value; break;
-    case Token::NOTEQUAL: node->op = match(Token::NOTEQUAL).value; break;
+    case Token::EQU: node->op = match(Token::EQU).value; break;
+    case Token::NEQU: node->op = match(Token::NEQU).value; break;
     case Token::LT: node->op = match(Token::LT).value; break;
     case Token::GT: node->op = match(Token::GT).value; break;
     case Token::LTE: node->op = match(Token::LTE).value; break;

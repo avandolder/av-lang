@@ -9,8 +9,7 @@
 
 class Token {
  public:
-  enum Type
-  {
+  enum Type {
     ERROR,
     END,
     COMMENT,
@@ -47,8 +46,8 @@ class Token {
     IN,
     STRING,
     NUMBER,
-    EQUAL,
-    NOTEQUAL,
+    EQU,
+    NEQU,
     LT,
     GT,
     LTE,
@@ -81,6 +80,7 @@ class Token {
 
   Type type;
   std::string value;
+  int line;
 
   bool operator==(const Type& t) { return type == t; }
   bool operator!=(const Type& t) { return type != t; }
