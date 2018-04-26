@@ -5,23 +5,28 @@
 #include <list>
 #include <memory>
 
-#include "lexerstate.h"
 #include "token.h"
 
 class Lexer {
  public:
   Lexer(std::istream& input) : input(input) {}
 
-  Token generate_token();
-  void scan();
-
   static std::list<Token> tokenize(std::istream& input);
+
+  void scan();
+  Token generate_token();
+
+  Token get_id();
+  Token get_number();
+  Token get_string();
+  Token get_symbol();
+  Token get_line_comment();
+  Token get_block_comment();
 
  private:
   std::list<Token> tokens;
   std::istream& input;
-
-  std::unique_ptr<LexerState> curr_state;
+  int newlines = 0;
 };
 
 #endif
