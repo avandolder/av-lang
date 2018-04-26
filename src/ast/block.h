@@ -6,10 +6,9 @@
 
 #include "ast/ast.h"
 
-class Ast::Block
-{
-public:
-    std::vector<std::shared_ptr<Stmt>> stmts;
+class Ast::Block : public Node {
+ public:
+  std::vector<std::shared_ptr<Stmt>> stmts;
 };
 
 #endif

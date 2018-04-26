@@ -7,14 +7,13 @@
 
 #include "ast/ast.h"
 
-class Ast::FuncDef
-{
-public:
-    std::string id;
-    std::vector<std::shared_ptr<VarDef>> params;
-    bool returns_value = false;
-    std::string return_type;
-    std::shared_ptr<Block> block;
+class Ast::FuncDef : public Node {
+ public:
+  std::string id;
+  std::vector<std::shared_ptr<VarDef>> params;
+  bool returns_value = false;
+  std::string return_type;
+  std::shared_ptr<Block> block;
 };
 
 #endif

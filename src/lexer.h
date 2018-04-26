@@ -8,21 +8,20 @@
 #include "lexerstate.h"
 #include "token.h"
 
-class Lexer
-{
-private:
-    std::list<Token> tokens;
-    std::istream& input;
+class Lexer {
+ public:
+  Lexer(std::istream& input) : input(input) {}
 
-    std::unique_ptr<LexerState> curr_state;
+  Token generate_token();
+  void scan();
 
-public:
-    Lexer(std::istream& input) : input(input) {}
+  static std::list<Token> tokenize(std::istream& input);
 
-    Token generate_token();
-    void scan();
+ private:
+  std::list<Token> tokens;
+  std::istream& input;
 
-    static std::list<Token> tokenize(std::istream& input);
+  std::unique_ptr<LexerState> curr_state;
 };
 
 #endif
